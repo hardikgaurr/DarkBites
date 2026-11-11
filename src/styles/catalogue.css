@@ -1,0 +1,114 @@
+/* ——— Catalogue: product gallery, menu categories ——— */
+
+/* Product detail gallery */
+.pdp-media {
+  position: relative;
+  display: block;
+  transition: background-color 0.3s var(--ease-out);
+}
+.pdp-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  align-items: center;
+}
+.pdp-track::-webkit-scrollbar {
+  display: none;
+}
+.pdp-slide {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  display: grid;
+  place-items: center;
+}
+.pdp-media-inner {
+  width: 100%;
+}
+.pdp-media-meta {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  pointer-events: none;
+}
+.pdp-rep {
+  padding: 4px 8px;
+  border-radius: 2px;
+  background: rgba(33, 25, 23, 0.62);
+  color: #fffaf7;
+  font-size: 0.6875rem;
+  letter-spacing: 0.02em;
+}
+.pdp-dots {
+  display: inline-flex;
+  gap: 6px;
+  margin-left: auto;
+  padding: 6px 8px;
+  border-radius: 2px;
+  background: rgba(33, 25, 23, 0.45);
+}
+.pdp-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 250, 247, 0.45);
+  transition: background-color 0.2s, transform 0.2s var(--ease-out);
+}
+.pdp-dot.is-on {
+  background: #fffaf7;
+  transform: scale(1.15);
+}
+@media (min-width: 900px) {
+  .pdp-media {
+    position: sticky;
+    top: 0;
+    height: 88dvh;
+  }
+  .pdp-track,
+  .pdp-slide {
+    height: 100%;
+  }
+}
+
+/* Menu: each category opens with its own image and line */
+.menu-group-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--ink);
+}
+.menu-group-cover {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: var(--bg-3);
+}
+.menu-group-cover .pic {
+  height: 64px;
+  width: auto;
+}
+.menu-group-text {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.menu-group-head .h3 {
+  line-height: 1.05;
+}
+.menu-group + .menu-group {
+  margin-top: 56px;
+}
+.fam-savoury .menu-group-cover {
+  background: var(--espresso);
+}

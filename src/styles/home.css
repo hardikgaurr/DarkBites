@@ -1,0 +1,414 @@
+/* ——— Homepage ——— */
+
+/* 1. Hero — text, then the full-bleed product photograph on mobile; side by side on desktop */
+.h-hero {
+  padding-top: 24px;
+}
+.h-hero-grid {
+  display: grid;
+}
+.h-hero-text {
+  display: grid;
+  gap: 16px;
+  padding-bottom: 24px;
+}
+.h-eyebrow {
+  color: var(--muted);
+}
+.h-hero-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(2.6rem, 1.6rem + 5.2vw, 6rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+.h-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+.h-line > span {
+  display: inline-block;
+  will-change: transform;
+}
+.h-accent {
+  color: var(--accent);
+}
+.h-hero-copy {
+  display: grid;
+  gap: 20px;
+}
+.h-hero-copy .lede {
+  max-width: 34ch;
+}
+.h-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+}
+.h-cta-wrap {
+  display: inline-flex;
+}
+.h-credit {
+  display: none;
+}
+
+/* Photo: full-bleed on phones, never cropped */
+.h-hero-photo {
+  margin: 0 calc(var(--gutter) * -1);
+  position: relative;
+  background: var(--espresso-deep);
+}
+.h-photo-link {
+  display: block;
+  position: relative;
+  color: var(--on-dark);
+}
+.h-coverline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 12px;
+  padding: 48px var(--gutter) 16px;
+  background: linear-gradient(to top, rgba(33, 25, 23, 0.8), rgba(33, 25, 23, 0));
+}
+.h-coverline-no {
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  color: var(--accent-on-dark);
+}
+.h-coverline-dish {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  line-height: 1.15;
+}
+.h-coverline-price {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}
+.h-coverline-price svg {
+  transition: transform 0.25s var(--ease-out);
+}
+@media (hover: hover) {
+  .h-photo-link:hover .h-coverline-price svg {
+    transform: translate(2px, -2px);
+  }
+}
+@media (max-width: 374px) {
+  .h-coverline {
+    grid-template-columns: 1fr auto;
+  }
+  .h-coverline-no {
+    display: none;
+  }
+}
+@media (min-width: 900px) {
+  .h-hero {
+    padding: 40px 0 72px;
+  }
+  .h-hero-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    column-gap: 24px;
+    align-items: center;
+    min-height: calc(100dvh - var(--header-h) - 112px);
+  }
+  .h-hero-text {
+    grid-column: 1 / 7;
+    gap: 24px;
+    padding-bottom: 0;
+  }
+  .h-hero-copy {
+    gap: 28px;
+  }
+  .h-credit {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    max-width: 440px;
+  }
+  .h-credit-img {
+    width: 44px;
+    flex: none;
+    overflow: hidden;
+  }
+  .h-credit-text {
+    display: grid;
+    gap: 2px;
+    font-size: 0.875rem;
+  }
+  .h-hero-photo {
+    grid-column: 8 / -1;
+    margin: 0;
+    justify-self: end;
+    width: min(100%, calc((100dvh - var(--header-h) - 120px) * 1086 / 1448));
+  }
+  .h-coverline {
+    padding: 64px 20px 18px;
+  }
+}
+
+/* 2. Menu discovery — scrollable category tiles */
+.h-discover {
+  border-top: 1px solid var(--line);
+}
+.h-cats {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 136px;
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  padding: 0 var(--gutter) 4px;
+  scroll-padding-inline: var(--gutter);
+  margin: 0;
+}
+.h-cats::-webkit-scrollbar {
+  display: none;
+}
+.h-cats > li {
+  scroll-snap-align: start;
+}
+.h-cat {
+  display: grid;
+  gap: 8px;
+}
+.h-cat .frame {
+  transition: transform 0.2s var(--ease-out);
+}
+.h-cat:active .frame {
+  transform: scale(0.98);
+}
+.h-cat-name {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.25;
+}
+@media (min-width: 900px) {
+  .h-cats {
+    max-width: var(--max);
+    margin-inline: auto;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    overflow: visible;
+    gap: 20px;
+  }
+}
+
+/* 3. Signature cheesecakes */
+.h-sig {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(78vw, 360px);
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  padding-inline: var(--gutter);
+  scroll-padding-inline: var(--gutter);
+  align-items: start;
+}
+.h-sig::-webkit-scrollbar {
+  display: none;
+}
+.h-sig-item {
+  scroll-snap-align: start;
+}
+@media (min-width: 900px) {
+  .h-sig {
+    max-width: var(--max);
+    margin-inline: auto;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow: visible;
+    gap: 28px;
+  }
+  .h-sig-1 {
+    margin-top: 64px;
+  }
+}
+
+/* 4. Brownies & desserts */
+.h-brownies-grid {
+  display: grid;
+  gap: 28px;
+}
+.h-brownies-photo {
+  display: block;
+  width: 78%;
+}
+.h-brownies-text {
+  display: grid;
+  gap: 16px;
+  align-content: end;
+}
+.h-brownies-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  margin-top: 4px;
+}
+.h-brownies-actions .text-btn {
+  color: var(--on-dark);
+}
+.h-rail {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: min(62vw, 300px);
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  padding-inline: var(--gutter);
+  scroll-padding-inline: var(--gutter);
+  margin-top: 48px;
+  align-items: start;
+}
+.h-rail::-webkit-scrollbar {
+  display: none;
+}
+.h-rail-item {
+  scroll-snap-align: start;
+}
+@media (min-width: 900px) {
+  .h-brownies-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 24px;
+    align-items: end;
+  }
+  .h-brownies-photo {
+    grid-column: 1 / 6;
+    width: 100%;
+  }
+  .h-brownies-text {
+    grid-column: 7 / -1;
+    padding-bottom: 24px;
+  }
+  .h-rail {
+    max-width: var(--max);
+    margin-inline: auto;
+    grid-auto-flow: row;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    overflow: visible;
+    gap: 24px;
+    margin-top: 64px;
+  }
+}
+
+/* 5. Savoury — the burger leads, the rest follows as a list */
+.h-savoury-grid {
+  display: grid;
+  gap: 32px;
+}
+.h-burger {
+  display: grid;
+  gap: 16px;
+}
+.h-burger-photo {
+  display: block;
+  margin: 0 calc(var(--gutter) * -1);
+}
+.h-burger-meta {
+  display: grid;
+  gap: 16px;
+}
+.h-burger-meta .h3 {
+  margin: 4px 0 4px;
+}
+.h-burger-buy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.h-burger-price {
+  display: grid;
+  gap: 2px;
+  font-size: 1.0625rem;
+  font-weight: 500;
+}
+.h-savoury-list .row:first-child {
+  border-top: 1px solid var(--ink);
+}
+@media (min-width: 900px) {
+  .h-savoury-grid {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: 56px;
+    align-items: start;
+  }
+  .h-burger-photo {
+    margin: 0;
+  }
+  .h-burger-meta {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+  .h-burger-buy {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
+
+/* 6. Cakes */
+.h-cakes {
+  display: grid;
+  gap: 32px;
+}
+.h-cakes-intro {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+.h-cakes-photo {
+  width: 64%;
+  margin-top: 12px;
+}
+.h-cakes-cta {
+  justify-self: start;
+  margin-top: 24px;
+}
+.h-cakes .rows {
+  display: grid;
+}
+@media (min-width: 900px) {
+  .h-cakes {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+    gap: 64px;
+  }
+  .h-cakes-intro {
+    position: sticky;
+    top: calc(var(--header-h) + 32px);
+    align-self: start;
+  }
+  .h-cakes-photo {
+    width: 72%;
+  }
+}
+
+/* 9. Delivery */
+.h-deliv {
+  border-top: 1px solid var(--line);
+}
+@media (min-width: 900px) {
+  .h-brownies .h-rail {
+    grid-template-columns: repeat(2, minmax(0, 300px));
+    justify-content: end;
+    padding-inline: var(--gutter);
+  }
+}

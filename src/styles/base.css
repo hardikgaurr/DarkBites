@@ -1,0 +1,266 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+  overscroll-behavior-y: none;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  font-feature-settings: 'ss01', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 100dvh;
+}
+
+html.scroll-locked,
+html.scroll-locked body {
+  overflow: hidden;
+}
+
+img,
+video,
+picture {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+ul,
+ol,
+dl,
+dd {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--caramel);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--espresso);
+  color: var(--on-dark);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  left: 12px;
+  top: -60px;
+  z-index: 100;
+  background: var(--ink);
+  color: var(--on-dark);
+  padding: 10px 14px;
+  font-size: var(--fs-small);
+}
+.skip-link:focus {
+  top: 12px;
+}
+
+/* ——— Layout ——— */
+.wrap {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.page {
+  padding-top: var(--header-h);
+  padding-bottom: calc(var(--bottom-nav-h) + var(--safe-b));
+  min-height: 100dvh;
+}
+
+.section {
+  padding-block: var(--section);
+}
+.section.tight {
+  padding-block: calc(var(--section) * 0.6);
+}
+
+.dark {
+  background: var(--espresso);
+  color: var(--on-dark);
+}
+.ink-bg {
+  background: var(--ink);
+  color: var(--on-dark);
+}
+.paper {
+  background: var(--bg-2);
+}
+
+.rule {
+  height: 1px;
+  background: var(--line);
+  border: 0;
+  margin: 0;
+}
+.dark .rule {
+  background: var(--line-dark);
+}
+
+/* ——— Type ——— */
+.display {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--fs-display);
+  line-height: 0.9;
+  letter-spacing: -0.025em;
+}
+.h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--fs-h1);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+.h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--fs-h2);
+  line-height: 1;
+  letter-spacing: -0.015em;
+}
+.h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: var(--fs-h3);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+.display em,
+.h1 em,
+.h2 em,
+.h3 em {
+  font-style: italic;
+}
+.label {
+  font-family: var(--sans);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.3;
+}
+.lede {
+  font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+  line-height: 1.55;
+  max-width: 38ch;
+}
+.muted {
+  color: var(--muted);
+}
+.dark .muted,
+.ink-bg .muted {
+  color: var(--on-dark-muted);
+}
+.small {
+  font-size: var(--fs-small);
+}
+.num {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum';
+}
+.caramel {
+  color: var(--caramel-ink);
+}
+.dark .caramel {
+  color: #d1a77d;
+}
+
+.section-head {
+  display: grid;
+  gap: var(--s3);
+  margin-bottom: var(--s6);
+}
+.section-head .section-head {
+  margin-bottom: 0;
+}
+.index {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+}
+.index::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.18;
+}
+@media (min-width: 900px) {
+  .section-head.split {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+  }
+}
+
+/* ——— Reduced motion ——— */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,95 @@
+/* ——— Theme: ivory, espresso, deep cherry ———
+   Loaded last. Maps the base component styles onto the refined palette. */
+
+.btn-primary {
+  background: var(--accent);
+  color: #fffaf7;
+}
+@media (hover: hover) {
+  .btn-primary:hover:not(:disabled) {
+    background: var(--accent-hover);
+  }
+}
+.btn.is-done {
+  background: var(--ok);
+}
+.btn-light {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+/* Accent words in display type: colour, not italic (no italic cut installed) */
+.display em,
+.h1 em,
+.h2 em,
+.h3 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.dark .h1 em,
+.dark .h2 em,
+.dark .h3 em,
+.ink-bg .h1 em,
+.ink-bg .h2 em {
+  color: var(--accent-on-dark);
+}
+
+/* Dark sections are espresso */
+.dark,
+.ink-bg {
+  background: var(--espresso);
+  color: var(--on-dark);
+}
+.dark .caramel,
+.ink-bg .caramel {
+  color: var(--accent-on-dark);
+}
+.caramel {
+  color: var(--accent);
+}
+
+/* Small accents */
+.toast-icon {
+  background: var(--accent);
+  color: #fffaf7;
+}
+.recog-year {
+  color: var(--accent);
+}
+.minbar-fill {
+  background: var(--accent);
+}
+:focus-visible {
+  outline-color: var(--accent);
+}
+mark {
+  text-decoration-color: var(--accent);
+}
+
+/* Selection states: noir fill for chips/slots, cherry for radios */
+.chip.is-on,
+.slot.is-on {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+.opt.is-on .opt-mark,
+.pay.is-on .pay-icon {
+  border-color: var(--accent);
+}
+.is-on > .opt-mark::after {
+  background: var(--accent);
+}
+.is-on > .opt-mark.is-box {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.notice {
+  background: var(--accent-soft);
+  border-left-color: var(--accent);
+}
+.notice svg {
+  color: var(--accent);
+}
+.stock-low_stock {
+  color: var(--warn);
+}

@@ -1,0 +1,50 @@
+/* DARK BITES — licensed brand typefaces (self-hosted WOFF2).
+   Canela (Commercial Type) for display, GT America (Grilli Type) for interface.
+   Only the Regular cuts are installed. Synthetic bold/italic is switched off so the
+   browser never fakes a style; add Medium / Italic files here when licensed. */
+
+@font-face {
+  font-family: 'Canela';
+  src: url('../assets/fonts/Canela-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'GT America';
+  src: url('../assets/fonts/GTAmerica-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  font-synthesis: none;
+}
+
+/* Canela is wider than the previous serif: keep the header wordmark on one line */
+.brand .brand-word {
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+@media (min-width: 900px) {
+  .brand .brand-word {
+    font-size: 1.35rem;
+  }
+}
+@media (max-width: 370px) {
+  .brand .brand-word {
+    font-size: 1.05rem;
+  }
+}
+@media (max-width: 370px) {
+  .header-actions .loc-chip {
+    max-width: none;
+    padding: 0 8px;
+  }
+  .brand .brand-word {
+    font-size: 1rem;
+  }
+}

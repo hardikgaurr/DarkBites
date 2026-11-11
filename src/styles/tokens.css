@@ -1,0 +1,91 @@
+/* DARK BITES — design tokens
+   Two typefaces only: Canela (display) + GT America (utility).
+   Palette: ivory foundation, espresso for depth, deep cherry as the single brand accent.
+   Caramel is reserved for small details. Product photographs carry their own colour;
+   the interface around them stays neutral. */
+
+:root {
+  /* Colour */
+  --bg: #f6f2ec; /* ivory — main background */
+  --bg-2: #fffcf8; /* paper — cards, sheets, inputs */
+  --bg-3: #ede6dd; /* raised — placeholders, notes */
+  --ink: #211917; /* primary text */
+  --espresso: #3a2924; /* dark sections */
+  --espresso-deep: #2a1e1a; /* footer, photo bands */
+  --chocolate: #3a2924; /* legacy alias → espresso */
+  --accent: #8d263b; /* deep cherry — primary actions, key words */
+  --accent-hover: #731c2f; /* dark cherry */
+  --accent-soft: #f4e5e6; /* quiet cherry tint for notes */
+  --accent-on-dark: #e7a3ae; /* cherry readable on espresso */
+  --caramel: #ac8664; /* muted caramel — sparing detail only */
+  --caramel-ink: #8d263b; /* legacy alias for small accent text */
+  --line: #e2d9d0; /* dividers */
+  --line-strong: #cfc3b7;
+  --muted: #776d67; /* secondary text */
+  --on-dark: #f6f2ec;
+  --on-dark-muted: #c2b3aa;
+  --line-dark: rgba(246, 242, 236, 0.16);
+
+  /* Status — desaturated, never neon */
+  --ok: #3f6b4a;
+  --warn: #9c6418;
+  --stop: #a3261c;
+
+  /* Surfaces for chrome */
+  --glass: rgba(246, 242, 236, 0.92);
+  --glass-dark: rgba(33, 25, 23, 0.62);
+  --glass-blur: saturate(1.2) blur(12px);
+
+  /* Type */
+  --serif: 'Canela', 'Times New Roman', serif;
+  --sans: 'GT America', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --fs-display: clamp(2.75rem, 1.4rem + 6.4vw, 6.25rem);
+  --fs-h1: clamp(2.3rem, 1.5rem + 3.8vw, 4.4rem);
+  --fs-h2: clamp(1.9rem, 1.45rem + 2.3vw, 2.9rem);
+  --fs-h3: clamp(1.45rem, 1.25rem + 0.9vw, 1.85rem);
+  --fs-title: clamp(0.95rem, 0.9rem + 0.25vw, 1.06rem);
+  --fs-body: 0.9375rem;
+  --fs-small: 0.8125rem;
+  --fs-label: 0.6875rem;
+
+  /* Space — 4px base */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 48px;
+  --s8: 64px;
+  --s9: 96px;
+  --section: clamp(56px, 4rem + 4vw, 128px);
+  --gutter: clamp(18px, 4.2vw, 40px);
+  --max: 1320px;
+
+  /* Shape */
+  --r-control: 2px;
+  --r-sheet: 14px;
+
+  /* Elevation — used only on overlays */
+  --shadow-sheet: 0 -1px 0 rgba(33, 25, 23, 0.06), 0 -18px 48px -24px rgba(33, 25, 23, 0.35);
+
+  /* Icons */
+  --icon-sm: 16px;
+  --icon-md: 20px;
+  --icon-lg: 22px;
+
+  /* Layout */
+  --header-h: 56px;
+  --bottom-nav-h: 64px;
+  --safe-b: env(safe-area-inset-bottom, 0px);
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (min-width: 900px) {
+  :root {
+    --header-h: 72px;
+    --bottom-nav-h: 0px;
+  }
+}
