@@ -16,6 +16,7 @@ Originals are never modified. They are kept in `media-source/` (not served). Web
 | `pexels-medine-dilek-kizmaz-7160768-35047343.jpg` | 1717×2576 | `stock-berry-cheesecake` | Cheesecakes | Blueberry Cheesecake | Primary listing image; product gallery (1st). Client campaign image kept as 2nd gallery image | Medine Dilek Kizmaz / Pexels — Pexels License |
 | `pexels-nano-erdozain-120534369-28895990.jpg` | 1718×2576 | `stock-biscoff-cheesecake` | Cheesecakes | Biscoff Cheesecake | Primary listing image; product gallery (1st). Client campaign image kept as 2nd gallery image | Nano Erdozain / Pexels — Pexels License |
 | `pexels-kawerodriguess-17488699.jpg` | 1717×2576 | `stock-brownie-stack` | Brownies & desserts | Brownie with Vanilla Ice Cream — “Box of 4” variant | Supplementary — gallery (2nd), shown when “Box of 4” is selected; Brownies category tile; homepage brownies feature | Kawe Rodrigues / Pexels — Pexels License |
+| `pexels-pealdesign-30699392.jpg` | 1717×2576 | `stock-login-cocoa` | — | Sign in / create account page | Desktop photo panel on #login, #signup and #account (hidden on phones) | pealdesign / Pexels — Pexels License |
 
 **Pexels License:** free for commercial use, no attribution required. It does not cover trademarks or identifiable brands shown in a photo, and photos may not be used to imply endorsement. Points to note:
 - `pexels-hassan-…` (burger) shows another restaurant’s printed wrapper and logo.

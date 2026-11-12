@@ -32,3 +32,13 @@ Routes are hash based: `#menu`, `#menu-burgers`, `#p-classic-burger`, `#checkout
 Footer → **Preview controls** changes stock live, to demonstrate the sold-out, low-stock and paused states.
 
 See `ASSET_MANIFEST.md` for photo sources, licences and placement.
+
+## Sign in / create account (demo)
+
+- Routes: `#login`, `#signup`, `#account`. Desktop: account icon in the header. Phones: "Sign in" in the bottom nav.
+- Demo account: `demo@darkbites.in` / `DarkBites@2026` (or tap "Fill in demo details").
+- "Continue with Google" is simulated and signs in a demo Google user.
+- Everything runs in the browser (`src/services/auth.ts`). To go live, replace the bodies of
+  `signInWithPassword`, `signUp`, `signInWithGoogle` and `requestPasswordReset` with a real
+  provider (Supabase Auth or Firebase Auth), and set `GOOGLE_CLIENT_ID`.
+- Signing in fills the checkout name, email and phone if they are empty.

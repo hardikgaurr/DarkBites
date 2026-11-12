@@ -1,8 +1,9 @@
 import { motion, useMotionValueEvent, useScroll } from 'framer-motion';
-import { ChevronDown, MapPin, Search, ShoppingBag } from 'lucide-react';
+import { ChevronDown, MapPin, Search, ShoppingBag, UserRound } from 'lucide-react';
 import { useState } from 'react';
 import { BRAND } from '../../config/business';
-import type { Route } from '../../lib/router';
+import { isAuthRoute, type Route } from '../../lib/router';
+import { initials, openAuth, useUser } from '../../store/auth';
 import { useCartCount } from '../../store/cart';
 import { useServiceCheck } from '../../store/delivery';
 import { setUI, useUI } from '../../store/ui';
@@ -20,7 +21,7 @@ const links: { label: string; to: Route }[] = [
 ];
 
 /**
- * Header priority (mobile): brand → delivery location → search → bag.
+ * Header priority (mobile): brand → delivery location → search → account → bag (desktop).
  * Always solid; a hairline appears once the page scrolls.
  */
 export function Header({ route }: { route: Route; overHero?: boolean }) {
@@ -33,6 +34,8 @@ export function Header({ route }: { route: Route; overHero?: boolean }) {
   const count = useCartCount();
   const check = useServiceCheck();
   const pulse = useUI((s) => s.cartPulse);
+  const user = useUser();
+  const onAuth = isAuthRoute(route);
   const active = (to: Route) =>
     to.name === route.name && (to.name !== 'menu' || (route.name === 'menu' && to.category === route.category));
 
@@ -73,6 +76,15 @@ export function Header({ route }: { route: Route; overHero?: boolean }) {
           </button>
           <button type="button" className="icon-btn" onClick={() => setUI({ searchOpen: true })} aria-label="Search the menu">
             <Search size={20} strokeWidth={1.5} />
+          </button>
+          <button
+            type="button"
+            className={`icon-btn acct-btn${onAuth ? ' is-active' : ''}`}
+            onClick={() => openAuth('login', route)}
+            aria-label={user ? `Your account, signed in as ${user.name}` : 'Sign in'}
+            aria-current={onAuth ? 'page' : undefined}
+          >
+            {user ? <span className="acct-initials">{initials(user)}</span> : <UserRound size={20} strokeWidth={1.5} />}
           </button>
           <button type="button" className="icon-btn bag-btn" onClick={() => setUI({ cartOpen: true })} aria-label={`Bag, ${count} items`}>
             <ShoppingBag size={20} strokeWidth={1.5} />

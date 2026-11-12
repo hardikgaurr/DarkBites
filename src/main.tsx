@@ -6,6 +6,7 @@ import './styles/pages.css';
 import './styles/chrome.css';
 import './styles/home.css';
 import './styles/catalogue.css';
+import './styles/auth.css';
 import './styles/theme.css';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';

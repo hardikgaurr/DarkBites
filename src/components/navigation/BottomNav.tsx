@@ -1,7 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowRight, BookOpen, House, Search, ShoppingBag, UtensilsCrossed } from 'lucide-react';
+import { ArrowRight, BookOpen, House, ShoppingBag, UserRound, UtensilsCrossed } from 'lucide-react';
 import { formatINR } from '../../lib/format';
-import { navigate, type Route } from '../../lib/router';
+import { isAuthRoute, navigate, type Route } from '../../lib/router';
+import { initials, openAuth, useUser } from '../../store/auth';
 import { useCartCount, useTotals } from '../../store/cart';
 import { setUI, useUI } from '../../store/ui';
 
@@ -10,6 +11,7 @@ export function BottomNav({ route }: { route: Route }) {
   const totals = useTotals();
   const pulse = useUI((s) => s.cartPulse);
   const cartOpen = useUI((s) => s.cartOpen);
+  const user = useUser();
   const showBar = count > 0 && route.name !== 'checkout' && !cartOpen;
 
   const item = (label: string, icon: React.ReactNode, on: boolean, run: () => void, extra?: React.ReactNode) => (
@@ -52,8 +54,13 @@ export function BottomNav({ route }: { route: Route }) {
       <nav className="bnav" aria-label="Main">
         {item('Home', <House size={21} strokeWidth={1.4} />, route.name === 'home', () => navigate({ name: 'home' }))}
         {item('Menu', <UtensilsCrossed size={21} strokeWidth={1.4} />, route.name === 'menu' || route.name === 'product', () => navigate({ name: 'menu' }))}
-        {item('Search', <Search size={21} strokeWidth={1.4} />, false, () => setUI({ searchOpen: true }))}
         {item('Story', <BookOpen size={21} strokeWidth={1.4} />, route.name === 'story', () => navigate({ name: 'story' }))}
+        {item(
+          user ? 'Account' : 'Sign in',
+          user ? <span className="bnav-avatar">{initials(user)}</span> : <UserRound size={21} strokeWidth={1.4} />,
+          isAuthRoute(route),
+          () => openAuth('login', route),
+        )}
         {item(
           'Bag',
           <ShoppingBag size={21} strokeWidth={1.4} />,

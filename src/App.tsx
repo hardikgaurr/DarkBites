@@ -10,7 +10,7 @@ import { SearchOverlay } from './components/navigation/SearchOverlay';
 import { ProductSheet } from './components/product/ProductSheet';
 import { ToastHost } from './components/ui/Toast';
 import { productById } from './data/products';
-import { back, toHash, useRoute, type Route } from './lib/router';
+import { back, isAuthRoute, toHash, useRoute, type Route } from './lib/router';
 import { startInventory } from './store/inventory';
 import { Home } from './pages/Home';
 import { Menu } from './pages/Menu';
@@ -19,6 +19,7 @@ import { Menu } from './pages/Menu';
 const Checkout = lazy(() => import('./pages/Checkout').then((m) => ({ default: m.Checkout })));
 const Story = lazy(() => import('./pages/Story').then((m) => ({ default: m.Story })));
 const Box = lazy(() => import('./pages/Box').then((m) => ({ default: m.Box })));
+const Auth = lazy(() => import('./pages/Auth').then((m) => ({ default: m.Auth })));
 
 const titles: Record<Route['name'], string> = {
   home: 'DARK BITES — Bakery · Confectionery · Café',
@@ -27,6 +28,9 @@ const titles: Record<Route['name'], string> = {
   checkout: 'Checkout — DARK BITES',
   story: 'Aryaman Srivastava — DARK BITES',
   box: 'Dessert box — DARK BITES',
+  login: 'Sign in — DARK BITES',
+  signup: 'Create an account — DARK BITES',
+  account: 'Your account — DARK BITES',
 };
 
 function Page({ route }: { route: Route }) {
@@ -41,6 +45,10 @@ function Page({ route }: { route: Route }) {
       return <Story />;
     case 'box':
       return <Box />;
+    case 'login':
+    case 'signup':
+    case 'account':
+      return <Auth route={route} />;
     default:
       return <Menu />;
   }
@@ -52,7 +60,8 @@ export function App() {
   const baseRef = useRef<Route>(route.name === 'product' ? { name: 'menu' } : route);
   if (route.name !== 'product') baseRef.current = route;
   const base = baseRef.current;
-  const baseKey = base.name === 'menu' ? 'menu' : toHash(base) || 'home';
+  // Sign in / create account / account share one key so switching between them animates in place.
+  const baseKey = base.name === 'menu' ? 'menu' : isAuthRoute(base) ? 'auth' : toHash(base) || 'home';
   const product = route.name === 'product' ? (productById.get(route.id) ?? null) : null;
 
   useEffect(() => startInventory(), []);
@@ -82,7 +91,7 @@ export function App() {
             <Suspense fallback={<div className="wrap page-loading"><span className="skel-line shimmer" style={{ width: '40%' }} /></div>}>
               <Page route={base} />
             </Suspense>
-            {base.name !== 'checkout' && <Footer />}
+            {base.name !== 'checkout' && !isAuthRoute(base) && <Footer />}
           </motion.main>
         </AnimatePresence>
         <BottomNav route={route} />

@@ -9,6 +9,8 @@ import { categoryById, productById, type CategoryId } from '../data/products';
  *   #p-<id>      product sheet (opens over the previous page)
  *   #checkout    checkout                    #story        about the baker
  *   #box         dessert box (subscription preview)
+ *   #login       sign in                     #signup       create an account
+ *   #account     signed-in account summary
  */
 export type Route =
   | { name: 'home' }
@@ -16,7 +18,13 @@ export type Route =
   | { name: 'product'; id: string }
   | { name: 'checkout' }
   | { name: 'story' }
-  | { name: 'box' };
+  | { name: 'box' }
+  | { name: 'login' }
+  | { name: 'signup' }
+  | { name: 'account' };
+
+/** Routes that share the auth screen — switching between them animates in place. */
+export const isAuthRoute = (r: Route) => r.name === 'login' || r.name === 'signup' || r.name === 'account';
 
 export function parseHash(hash: string): Route {
   const h = hash.replace(/^#/, '');
@@ -27,7 +35,7 @@ export function parseHash(hash: string): Route {
     return categoryById.has(c) ? { name: 'menu', category: c } : { name: 'menu' };
   }
   if (h.startsWith('p-') && productById.has(h.slice(2))) return { name: 'product', id: h.slice(2) };
-  if (h === 'checkout' || h === 'story' || h === 'box') return { name: h };
+  if (h === 'checkout' || h === 'story' || h === 'box' || h === 'login' || h === 'signup' || h === 'account') return { name: h };
   return { name: 'home' };
 }
 
